@@ -2,6 +2,7 @@
 #include <math.h> 
 #include <string>
 #include <cmath>
+
 using namespace std;
 
 const int size = 100;
@@ -158,6 +159,9 @@ int main(){
             double A = 5; // AMPIEZZA
             double LD = 10; //lunghezza d'onda
             double V = 2; //VELOCITà
+            double tO; //Traslazione orrizzontale
+            double tV; //traslazione vertichale
+
             char matrix[size][size]; 
 
             cout<<"Parametri"<<endl;
@@ -167,27 +171,29 @@ int main(){
             cin>>V;
             cout<<"Lunghezza d'onda: ";
             cin>>LD;
-
+            cout<<"Traslazione verticale: ";
+            cin>>tV;
+            cout<<"Traslazione orizzontale: ";
+            cin>>tO;
             double T = LD/V; //periodo
-            double F = 1/T; //frequenta
+            double F = 1/T; //frequenza
             double K = (2 * pi)/LD; //numero do'onda
             double W = (2 * pi)/T; //Pulsazione
 
-            tuttobianco(matrix, size);
+                tuttobianco(matrix, size);
 
-            for (float x = -px; x < size/2-1; x++)
-            {
-                //l'equazione dell'onda
-                y = A*sin(K*x-W*T); 
-
-                if (y < size)
+                for (float x = -px; x < size/2-1; x++)
                 {
-                    matrix[int(-y+py)][int(x+px)]='O';
+                    //l'equazione dell'onda
+                    y = A*sin(W*x+tO*(pi/6))+tV;
+                    if (y < size)
+                    {
+                        matrix[int(-y+py)][int(x+px)]='O';
+                    }
                 }
-            }
+                
+                disegnografico(matrix, size);     
             
-            disegnografico(matrix, size);
-
             system("PAUSE");
         }
         break;
