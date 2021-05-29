@@ -14,11 +14,11 @@ void tuttobianco(char matrix[][size], int size2){
     {
         for (int j = 0; j < size; j++)
         {
-            matrix[i][j]=' ';   
+            matrix[i][j]=' '; 
         }        
     }
 }
-
+//ciao
 void disegnografico(char matrix[][size], int size){
     for (int i = 0; i < size; i++)
     {
